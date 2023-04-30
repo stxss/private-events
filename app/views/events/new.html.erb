@@ -1,0 +1,14 @@
+<%= form_with model: @post do |form| %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, placeholder: "Something captivating"%>
+  </div>
+  <div>
+    <%= form.label :body, "Post" %><br>
+    <%= form.text_field :body, placeholder: "Your text goes here" %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
