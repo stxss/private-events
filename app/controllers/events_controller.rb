@@ -19,6 +19,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   private
 
   def require_login
@@ -26,6 +30,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :body)
+    params.require(:event).permit(:title, :description, :location, :start_date, :start_time, :end_date, :end_time, :organizer, :atendees)
   end
 end

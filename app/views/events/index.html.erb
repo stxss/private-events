@@ -5,10 +5,10 @@ Hi! Here's the events we have available
     <li>
         Creator: <%= User.find(event.creator_id).username %>
         <div>
-          Title: <%= event.title %>
+          Title: <%= link_to event.title, event %>
         </div>
         <div>
-          Details: <%= event.body %>
+          Details: <%= event.description %>
         </div>
     </li>
   <% end %>
