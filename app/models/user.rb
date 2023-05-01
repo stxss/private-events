@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   has_many :created_events, foreign_key: "creator_id", class_name: "Event"
 
+  has_many :event_attendances, foreign_key: :attendee_id
+  has_many :attendances, through: :event_attendances, source: :attended_event
+
   validates :username, presence: true, uniqueness: {case_sensitive: false}
 
   # only allow letter, number, underscore and punctuation.
