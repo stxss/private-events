@@ -1,5 +1,20 @@
 Hi! Here's the events we have available
 
+<ul>
+  <% @events.each do |event| %>
+    <li>
+        Creator: <%= User.find(event.creator_id).username %>
+        <div>
+          Title: <%= event.title %>
+        </div>
+        <div>
+          Details: <%= event.body %>
+        </div>
+    </li>
+  <% end %>
+</ul>
+
+
 
 <%= button_to "Create Event", new_event_url, method: :get %><br />
 <%= button_to "Sign out", destroy_user_session_url, method: :delete %>

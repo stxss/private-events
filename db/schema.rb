@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_213011) do
     t.integer "atendees"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "creator_id"
   end
 
   create_table "users", force: :cascade do |t|

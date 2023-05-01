@@ -1,11 +1,11 @@
-<%= form_with model: @post do |form| %>
+<%= form_with model: @event do |form| %>
 
   <div>
-    <%= form.label :title %><br>
+    <%= form.label :title, "Event title" %><br>
     <%= form.text_field :title, placeholder: "Something captivating"%>
   </div>
   <div>
-    <%= form.label :body, "Post" %><br>
+    <%= form.label :body, "Event details" %><br>
     <%= form.text_field :body, placeholder: "Your text goes here" %>
   </div>
   <div>
