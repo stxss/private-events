@@ -1,0 +1,13 @@
+<ul>
+  <% @user.created_events.each do |event| %>
+    <li>
+        Creator: <%= User.find(event.creator_id).username %>
+        <div>
+          Title: <%= event.title %>
+        </div>
+        <div>
+          Details: <%= event.body %>
+        </div>
+    </li>
+  <% end %>
+</ul>
