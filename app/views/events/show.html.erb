@@ -22,4 +22,15 @@
     </li>
 </ul>
 
+<div>
+  <ul>
+
+      <% @event.attendees.each do |a| %>
+        <li> <%= a.username %> </li>
+      <% end %>
+
+
+  </ul>
+</div>
+
 <%= button_to "Attend Event", event_attendances_url(attendance: {attended_event_id: @event.id, attendee_id: current_user.id} ) %><br />

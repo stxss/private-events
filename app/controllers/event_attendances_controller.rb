@@ -1,10 +1,12 @@
 class EventAttendancesController < ApplicationController
+
     def new
         @attendance = EventAttendance.new
+
     end
 
     def create
-        @attendance = EventAttendance.create(event_attendance_params)
+        @attendance = EventAttendance.find_or_create_by(event_attendance_params)
 
         if @attendance.save
             redirect_to root_path
