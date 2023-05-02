@@ -11,3 +11,13 @@
     </li>
   <% end %>
 </ul>
+
+<div>
+  attended events:
+  <ul>
+      <% @user.attendances.each do |e| %>
+        <li> Title: <%= link_to e.title, e %> </li>
+
+      <% end %>
+  </ul>
+</div>
