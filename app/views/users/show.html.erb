@@ -15,9 +15,15 @@
 <div>
   attended events:
   <ul>
-      <% @user.attendances.each do |e| %>
+    in the past:
+      <% @user.attendances.where("start_date < ? ", Date.current).each do |e| %>
         <li> Title: <%= link_to e.title, e %> </li>
-
+      <% end %>
+  </ul>
+  <ul>
+    in the future:
+      <% @user.attendances.where("start_date > ? ", Date.current).each do |e| %>
+        <li> Title: <%= link_to e.title, e %> </li>
       <% end %>
   </ul>
 </div>

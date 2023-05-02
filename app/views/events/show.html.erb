@@ -23,13 +23,11 @@
 </ul>
 
 <div>
+  attendees:
   <ul>
-
       <% @event.attendees.each do |a| %>
         <li> <%= a.username %> </li>
       <% end %>
-
-
   </ul>
 </div>
 
