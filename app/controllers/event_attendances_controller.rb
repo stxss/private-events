@@ -5,15 +5,16 @@ class EventAttendancesController < ApplicationController
 
     end
 
-    def create
-        @attendance = EventAttendance.find_or_create_by(event_attendance_params)
+  def destroy
+    @event_id = event_attendance_params[:attended_event_id]
+    @attendance = EventAttendance.where(attended_event_id: @event_id, attendee_id: current_user).first
 
-        if @attendance.save
-            redirect_to root_path
-        else
-            render :new, status: :unprocessable_entity
-        end
+    if @attendance.destroy
+        redirect_to root_path
+    else
+        render :new, status: :unprocessable_entity
     end
+  end
 
     private
 

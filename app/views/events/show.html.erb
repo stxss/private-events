@@ -31,4 +31,8 @@
   </ul>
 </div>
 
-<%= button_to "Attend Event", event_attendances_url(attendance: {attended_event_id: @event.id, attendee_id: current_user.id} ) %><br />
+  <% if @event.attendees.include?(current_user)  %>
+    <%= button_to "Unattend Event", event_attendance_url(attendance: {attended_event_id: @event.id, attendee_id: current_user.id} ), method: :delete %><br />
+    <% else %>
+    <%= button_to "Attend Event", event_attendances_url(attendance: {attended_event_id: @event.id, attendee_id: current_user.id} ) %><br />
+  <% end %>
