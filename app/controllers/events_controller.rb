@@ -23,9 +23,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
   def destroy
     @event = Event.find(params[:id])
-    
+
     if @event.destroy
         redirect_to root_path
     else
