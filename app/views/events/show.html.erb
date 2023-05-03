@@ -12,13 +12,13 @@
           Start date: <%= @event.start_date %>
         </div>
         <div>
-          Start time: <%= @event.start_time %>
+          Start time: <%= @event.start_time.to_fs(:time) %>
         </div>
         <div>
           Ent date: <%= @event.end_date %>
         </div>
         <div>
-          End time: <%= @event.end_time %>
+          End time: <%= @event.end_time.to_fs(:time) %>
         </div>
         <div>
           Description: <%= @event.description %>

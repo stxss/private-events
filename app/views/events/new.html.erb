@@ -18,7 +18,6 @@
   <div>
     <%= form.label :start_date, "Event starts" %><br>
     <%= form.date_field :start_date, value: Date.current + 7.day %>
-    <%= I18n.localize(Date.current + 7.day, format: "%d %m %y") %>
   </div>
 
   <div>
@@ -34,11 +33,6 @@
   <div>
     <%= form.label :end_time, "End Time" %><br>
     <%= form.time_field :end_time, value: "06:00" %>
-  </div>
-
-  <div>
-    <%= form.label :file_up, "Upload an image" %><br>
-    <%= form.file_field :file_up, placeholder: "Write a description for your event" %>
   </div>
 
   <div>

@@ -9,7 +9,7 @@ Hi! Here's the events we have available
   <ul>
     Past events:<br /><br />
       <% Event.past.each do |e| %>
-        <li style="border: 1px solid black">
+        <li>
           Title: <%= link_to e.title, e %><br />
           Details: <%= e.description %><br />
           Creator: <%= User.find(e.creator_id).username %>
@@ -19,7 +19,7 @@ Hi! Here's the events we have available
   <ul>
     Future events:<br /><br />
       <% Event.upcoming.each do |e| %>
-        <li style="border: 1px solid black">
+        <li>
           Title: <%= link_to e.title, e %><br />
           Details: <%= e.description %><br />
           Creator: <%= User.find(e.creator_id).username %>

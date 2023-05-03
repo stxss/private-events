@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   # def self.past
     # Event.where("start_date < ? ", Date.current)
   # end
-#
+
   # def self.upcoming
     # Event.where("start_date > ? ", Date.current)
   # end
