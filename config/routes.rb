@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :events
-  resources :users
+  resources :users, except: [ :show ]
   resources :event_attendances
+
+  get 'profile', to: 'users#show'
 end
