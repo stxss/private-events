@@ -1,0 +1,7 @@
+<%= button_to "Events", root_url, method: :get %><br />
+
+<% if current_user %>
+    <%= button_to "Profile", profile_url, method: :get %>
+<% else %>
+    <%= button_to "Profile", new_user_session_url, method: :get %>
+<% end %>

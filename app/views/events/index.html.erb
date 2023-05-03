@@ -1,21 +1,11 @@
-Hi! Here's the events we have available
-
-<ul>
-  <% @events.each do |event| %>
-    <li>
-        Creator: <%= User.find(event.creator_id).username %>
-        <div>
-          Title: <%= link_to event.title, event %>
-        </div>
-        <div>
-          Details: <%= event.description %>
-        </div>
-    </li>
-  <% end %>
-</ul>
 
 <div>
-  events:
+<%= render "shared/header_links" %>
+</div>
+
+Hi! Here's the events we have available
+
+<div>
   <ul>
     Past events:<br /><br />
       <% Event.past.each do |e| %>
