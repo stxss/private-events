@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_173347) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_131439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_173347) do
     t.string "organizer"
     t.date "end_date"
     t.time "end_time"
+    t.string "visibility", default: "private"
   end
 
   create_table "users", force: :cascade do |t|

@@ -41,6 +41,14 @@
   </div>
 
   <div>
+    <p>Event visibility<p>
+    <%= form.radio_button :visibility, "public" %>
+    <%= form.label :visibility_public, "Public" %><br />
+    <%= form.radio_button :visibility, "private" %>
+    <%= form.label :visibility_private, "Private" %><br />
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
