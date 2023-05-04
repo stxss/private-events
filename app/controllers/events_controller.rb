@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :require_login, only: %i[new create]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @events = Event.all
