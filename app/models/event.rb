@@ -3,8 +3,10 @@ class Event < ApplicationRecord
   has_many :event_attendances, foreign_key: :attended_event_id
   has_many :attendees, through: :event_attendances, source: :attendee, dependent: :destroy
 
-  scope :past, -> { where("start_date < ?", Date.current)}
-  scope :upcoming, -> { where("start_date > ?", Date.current)}
+  scope :past, -> { where("start_date < ?", Date.current) }
+  scope :upcoming, -> { where("start_date > ?", Date.current) }
+  scope :public_visibility, -> { where("visibility = ?", "public") }
+  scope :private_visibility, -> { where("visibility = ?", "private") }
 
   # def self.past
     # Event.where("start_date < ? ", Date.current)
