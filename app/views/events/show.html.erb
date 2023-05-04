@@ -23,9 +23,11 @@
         <div>
           Description: <%= @event.description %>
         </div>
-        <div>
-          This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>
-        </div>
+        <% if current_user.username == @event.organizer %>
+          <div>
+            This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>
+          </div>
+        <% end %>
 
     </li>
 </ul>
