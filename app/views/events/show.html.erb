@@ -45,8 +45,8 @@
     <%= button_to "Cancel event", event_url(@event), method: :delete, data: {turbo_confirm: "Are you sure?"} %><br />
   <% end %>
 
-  <% if @event.attendees.include?(current_user)  %>
-    <%= button_to "Cancel my attendance", event_attendance_url(attendance: {attended_event_id: @event.id, attendee_id: current_user.id} ), method: :delete %><br />
-    <% else %>
-    <%= button_to "Attend Event", event_attendances_url(attendance: {attended_event_id: @event.id, attendee_id: current_user.id} ) %><br />
+  <% if @event.attendees.include?(current_user) %>
+    <%= button_to "Cancel my attendance", event_attendance_url(attendance: {attended_event_id: @event, attendee_id: current_user} ), method: :delete %><br />
+  <% else %>
+    <%= button_to "Attend Event", event_attendances_url(attendance: {attended_event_id: @event, attendee_id: current_user} ) %><br />
   <% end %>
