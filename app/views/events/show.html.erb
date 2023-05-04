@@ -27,6 +27,20 @@
           <div>
             This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>
           </div>
+          <div><br />
+            Select the users you want to invite:
+            <%= form_with model: @invitation do |f| %>
+              <%= f.collection_check_boxes(:invite_user, User.order(:username).reject { |n| n == current_user}, :id, :username) do |b| %>
+                <% next if :username == @event.organizer %>
+                <li style="list-style-type: none;">
+                  <%= b.check_box %>
+                  <%= b.label  %>
+                </li>
+                <% end %><br />
+                <%= f.submit "Send Invitations"%>
+            <% end %><br>
+          </div>
+
         <% end %>
 
     </li>
