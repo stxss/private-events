@@ -11,11 +11,12 @@ class User < ApplicationRecord
   has_many :event_attendances, foreign_key: :attendee_id
   has_many :attendances, through: :event_attendances, source: :attended_event
 
-  has_many :event_invitations, foreign_key: :creator_id
-  has_many :invitations_sent, through: :event_invitations, source: :invitation_creator
+  # has_many :invitations, class_name: "Invitation"
+  has_many :invitations, foreign_key: "creator_id"
+  has_many :invitations_sent, class_name: "Invitation"
 
-  has_many :event_invitations, foreign_key: :invitee_id
-  has_many :invitations_received, through: :event_invitations, source: :invitee
+  # has_many :invitations, foreign_key: "invitee_id"
+  # has_many :invitations_received, through: :invitations, source: :invitee
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}
 

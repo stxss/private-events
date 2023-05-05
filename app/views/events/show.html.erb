@@ -27,18 +27,7 @@
           <div>
             This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>
           </div>
-          <div><br />
-            Select the users you want to invite:
-            <%= form_with model: @invitation, url: invitations_path do |form| %>
-              <p><%= form.label :creator_id %><br>
-              <%= form.text_field :creator_id, placeholder: "On a scale of 10" %></p>
-
-              <p><%= form.submit "Create Entry" %></p>
-            <% end %>
-          </div>
-
         <% end %>
-
     </li>
 </ul>
 

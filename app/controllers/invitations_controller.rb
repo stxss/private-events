@@ -6,9 +6,11 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.new(invitation_params)
+    @event_id = params[:invited_event_id]
+    @creator_id = params[:creator_id]
+    @invitation = current_user.invitations_sent.create(creator_id: @creator_id, invited_event_id: @event_id, invitee_id: invitation_params)
 
-    if @invitation.save
+    if @invitation.save!
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -29,6 +31,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:creator_id, :invited_event_id, :invitee_id)
+    params.require(:invitation).permit(invitee_id: [])
   end
 end
