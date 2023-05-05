@@ -3,23 +3,23 @@ class InvitationsController < ApplicationController
 
   def new
     @invitation = Invitation.new
+    @creator = InvitationCreator.new
   end
 
   def create
-    @event_id = params[:invited_event_id]
-    @creator_id = params[:creator_id]
-    @invitation = current_user.invitations_sent.create(creator_id: @creator_id, invited_event_id: @event_id, invitee_id: invitation_params)
+    result = InvitationCreator.call(invitation_params)
 
-    if @invitation.save!
+    if result.successes.present?
+      flash[:info] = "Invitations successful!"
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      flash[:warning] = "Failed to send invitations, please try again."
     end
   end
 
   def destroy
-    @event_id = invitation_params[:invited_event_id]
-    @invitation = Invitation.where(invited_event_id: @event_id, invitee_id: current_user).first
+    @event_id = invitation_params[:event_id]
+    @invitation = Invitation.where(event_id: @event_id, invitee_id: current_user).first
 
     if @invitation.destroy
       redirect_to root_path
@@ -31,6 +31,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(invitee_id: [])
+    params.require(:invitation).permit(invitee_ids: []).merge(creator_id: current_user.id, event_id: params[:event_id])
   end
 end
