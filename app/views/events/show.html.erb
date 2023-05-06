@@ -1,50 +1,10 @@
 <div>
-<%= render "shared/header_links" %>
+  <%= render "shared/header_links" %>
+</div><br />
+
+<div>
+  <%= render "event_info" %>
 </div>
-
-<ul>
-    <li>
-        Creator: <%= @event.organizer %>
-        <div>
-          Title: <%= @event.title %>
-        </div>
-        <div>
-          Start date: <%= @event.start_date %>
-        </div>
-        <div>
-          Start time: <%= @event.start_time.to_fs(:time) %>
-        </div>
-        <div>
-          Ent date: <%= @event.end_date %>
-        </div>
-        <div>
-          End time: <%= @event.end_time.to_fs(:time) %>
-        </div>
-        <div>
-          Description: <%= @event.description %>
-        </div>
-        <% if current_user.username == @event.organizer %>
-          <div>
-            This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>
-          </div>
-          <div>
-            <p>Invite users:<p>
-            <%= form_with model: Invitation.new, url: event_invitations_path(@event) do |f| %>
-              <%= f.collection_check_boxes(:invitee_ids, User.order(:username).reject { |n| n == current_user || n.invitations_received.where(event_id: @event.id).any?}, :id, :username) do |b| %>
-
-                <li style="list-style-type: none;">
-                  <%= b.check_box %>
-                  <%= b.label  %>
-                </li>
-                <% end %><br />
-                <%= f.submit "Send Invitations"%>
-            <% end %><br>
-          </div>
-
-          <div>
-            <p>Cancel invitations:<p>
-            <%= form_with model: Invitation.new, url: event_invitation_path(@event), method: :delete do |f| %>
-              <%= f.collection_check_boxes(:invitee_ids, User.order(:username).where(id: Invitation.where(event_id: @event.id).pluck(:invitee_id)), :id, :username) do |b| %>
 
                 <li style="list-style-type: none;">
                   <%= b.check_box %>

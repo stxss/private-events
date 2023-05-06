@@ -1,0 +1,26 @@
+<div>
+Event Information:
+<ul>
+    <li>
+        Creator: <%= @event.organizer %>
+        <div>
+          Title: <%= @event.title %>
+        </div>
+        <div>
+          Start date: <%= @event.start_date %>
+        </div>
+        <div>
+          Start time: <%= @event.start_time.to_fs(:time) %>
+        </div>
+        <div>
+          Ent date: <%= @event.end_date %>
+        </div>
+        <div>
+          End time: <%= @event.end_time.to_fs(:time) %>
+        </div>
+        <div>
+          Description: <%= @event.description %>
+        </div>
+    </li>
+</ul>
+</div>
