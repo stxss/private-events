@@ -1,0 +1,12 @@
+<div>
+  pending invitations:
+  <ul>
+      <% @user.invitations_received.each do |i| %>
+        <li>
+          Title: <%= link_to Event.find(i.event_id).title, Event.find(i.event_id) %>
+          <%= button_to "Accept", event_attendances_url(attendance: {attended_event_id: i.event_id, attendee_id: current_user}) %>
+          <%= button_to "Decline"  %>
+        </li>
+      <% end %>
+  </ul>
+</div>
