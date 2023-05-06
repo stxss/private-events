@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
+
   def index
     @events = Event.all
   end
@@ -15,6 +16,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to root_path
     else
+      flash.now[:alert] = "Oops, something went wrong, check your fields again"
       render :new, status: :unprocessable_entity
     end
   end
@@ -35,6 +37,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to root_path
     else
+      flash.now[:alert] = "Oops, something went wrong, check your fields again"
       render :edit, status: :unprocessable_entity
     end
   end
