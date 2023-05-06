@@ -2,20 +2,9 @@
 <%= render "shared/header_links" %>
 </div>
 
-<ul>
-  <p>Created events</p>
-  <% @user.created_events.each do |event| %>
-    <li>
-        Creator: <%= @user.username %>
-        <div>
-          Title: <%= event.title %>
-        </div>
-        <div>
-          Details: <%= event.description %>
-        </div>
-    </li>
-  <% end %>
-</ul>
+<div>
+<%= render "created_events" %>
+</div>
 
 <div>
   attended events:

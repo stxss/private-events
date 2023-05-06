@@ -1,0 +1,14 @@
+<p>Created events:</p>
+<ul>
+  <% @user.created_events.each do |e| %>
+    <li>
+        Creator: <%= @user.username %>
+        <div>
+          Title: <%= link_to e.title, e %>
+        </div>
+        <div>
+          Details: <%= e.description %>
+        </div>
+    </li>
+  <% end %>
+</ul>
