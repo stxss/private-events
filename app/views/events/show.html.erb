@@ -40,6 +40,20 @@
                 <%= f.submit "Send Invitations"%>
             <% end %><br>
           </div>
+
+          <div>
+            <p>Cancel invitations:<p>
+            <%= form_with model: Invitation.new, url: event_invitation_path(@event), method: :delete do |f| %>
+              <%= f.collection_check_boxes(:invitee_ids, User.order(:username).where(id: Invitation.where(event_id: @event.id).pluck(:invitee_id)), :id, :username) do |b| %>
+
+                <li style="list-style-type: none;">
+                  <%= b.check_box %>
+                  <%= b.label  %>
+                </li>
+                <% end %><br />
+                <%= f.submit "Cancel Invitations"%>
+            <% end %><br>
+          </div>
         <% end %>
     </li>
 </ul>
