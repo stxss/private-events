@@ -6,12 +6,12 @@ class EventAttendancesController < ApplicationController
   end
 
   def create
-    @attendance = EventAttendance.create(event_attendance_params)
+    @attendance = EventAttendance.new(event_attendance_params)
 
     if @attendance.save
-      redirect_to root_path
+      redirect_to root_path, alert: "You registered your attendance successfully"
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, alert: "You can't attend past events or events where you weren't invited"
     end
   end
 
