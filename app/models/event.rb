@@ -9,12 +9,15 @@ class Event < ApplicationRecord
   scope :private_visibility, -> { where("visibility = ?", "private") }
 
   def visible?(user)
-    is_pub = (visibility == "public")
-    user_is_creator = (user.id == creator_id)
-    priv_invited = (visibility == "private" && user.invitations_received.where(event_id: id).any?)
-    priv_attending = (visibility == "private" && user.attendances.where(id: id).any?)
+    if user
+      user_is_creator = (user.id == creator_id)
+      priv_invited = (visibility == "private" && user.invitations_received.where(event_id: id).any?)
+      priv_attending = (visibility == "private" && user.attendances.where(id: id).any?)
 
-    is_pub || user && (user_is_creator || priv_invited || priv_attending)
+      visibility == "public" || user && (user_is_creator || priv_invited || priv_attending)
+    else
+      visibility == "public"
+    end
   end
 
   # def self.past
