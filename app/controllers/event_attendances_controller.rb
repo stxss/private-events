@@ -7,6 +7,13 @@ class EventAttendancesController < ApplicationController
 
   def create
     @attendance = EventAttendance.new(event_attendance_params)
+    @attendee = event_attendance_params[:attendee_id]
+    @event_id = event_attendance_params[:attended_event_id]
+    @host = Event.find(@event_id).creator_id
+
+    if Invitation.find_by(invitee_id: @attendee)
+      InvitationWiper.call(event_id: @event_id, inviter_id: @host, invitee_ids: [@attendee])
+    end
 
     if @attendance.save
       redirect_to root_path, alert: "You registered your attendance successfully"
