@@ -1,0 +1,54 @@
+<%= form_with model: @event do |form| %>
+
+  <div>
+    <%= form.label :title, "Event title" %><br />
+    <%= form.text_field :title, placeholder: "Be clear and descriptive", value: @event.title%>
+  </div>
+
+  <div>
+    <%= form.label :organizer, "Organizer" %><br />
+    <%= form.text_field :organizer, value: current_user.username, :readonly => true %>
+  </div>
+
+  <div>
+    <%= form.label :location, "Location" %><br />
+    <%= form.text_field :location, placeholder: "Enter a valid address"%>
+  </div>
+
+  <div>
+    <%= form.label :start_date, "Event starts" %><br />
+    <%= form.date_field :start_date, value: Date.current + 7.day %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, "Event ends" %><br />
+    <%= form.date_field :end_date, value: Date.current + 7.day %>
+  </div>
+
+  <div>
+    <%= form.label :start_time, "Start Time" %><br />
+    <%= form.time_field :start_time, value: "23:00" %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, "End Time" %><br />
+    <%= form.time_field :end_time, value: "06:00" %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Event description" %><br />
+    <%= form.text_area :description, placeholder: "Write a description for your event" %>
+  </div>
+
+  <div>
+    <p>Event visibility<p>
+    <%= form.radio_button :visibility, "public" %>
+    <%= form.label :visibility_public, "Public" %><br />
+    <%= form.radio_button :visibility, "private" %>
+    <%= form.label :visibility_private, "Private" %><br />
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
