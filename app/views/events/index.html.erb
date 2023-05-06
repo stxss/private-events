@@ -10,32 +10,12 @@ Hi! Here's the events we have available
   <p>You're here as a guest </p>
 <% end %>
 
+<div>
+<%= render "past_events" %>
+</div>
 
 <div>
-  <ul>
-    Past events:<br /><br />
-      <% Event.past.each do |e| %>
-        <% if e.visible?(current_user) %>
-          <li>
-            Title: <%= link_to e.title, e %><br />
-            Details: <%= e.description %><br />
-            Creator: <%= User.find(e.creator_id).username %>
-          </li>
-        <% end %>
-      <% end %>
-  </ul>
-  <ul>
-    Future events:<br /><br />
-      <% Event.upcoming.each do |e| %>
-        <% if e.visible?(current_user) %>
-        <li>
-          Title: <%= link_to e.title, e %><br />
-          Details: <%= e.description %><br />
-          Creator: <%= User.find(e.creator_id).username %>
-        </li>
-        <% end %>
-      <% end %>
-  </ul>
+<%= render "upcoming_events" %>
 </div>
 
 

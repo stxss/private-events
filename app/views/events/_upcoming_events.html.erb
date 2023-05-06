@@ -1,0 +1,14 @@
+<div>
+  <ul>
+    Upcoming events:<br /><br />
+      <% Event.upcoming.each do |e| %>
+        <% if e.visible?(current_user) %>
+            <li>
+              Title: <%= link_to e.title, e %><br />
+              Details: <%= e.description %><br />
+              Creator: <%= User.find(e.creator_id).username %>
+            </li>
+        <% end %>
+      <% end %>
+  </ul>
+</div>
