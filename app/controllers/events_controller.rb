@@ -21,6 +21,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @inviteable = User.order(:username).reject { |n| n == current_user || n.invitations_received.where(event_id: @event.id).any?}
+    @cancellable = User.order(:username).where(id: Invitation.where(event_id: @event.id).pluck(:invitee_id))
   end
 
   def edit

@@ -1,0 +1,27 @@
+<% if current_user.username == @event.organizer %>
+    <div>
+        <p>Invite users:<p>
+        <%= form_with model: invitation, url: event_invitations_path(@event) do |f| %>
+            <%= f.collection_check_boxes(:invitee_ids, inviteable, :id, :username) do |b| %>
+            <li style="list-style-type: none;">
+                <%= b.check_box %>
+                <%= b.label  %>
+            </li>
+            <% end %><br />
+            <%= f.submit "Send Invitations"%>
+        <% end %><br>
+    </div>
+
+    <div>
+        <p>Cancel invitations:<p>
+        <%= form_with model: invitation, url: event_invitation_path(@event), method: :delete do |f| %>
+            <%= f.collection_check_boxes(:invitee_ids, cancellable, :id, :username) do |b| %>
+            <li style="list-style-type: none;">
+                <%= b.check_box %>
+                <%= b.label  %>
+            </li>
+            <% end %><br />
+            <%= f.submit "Cancel Invitations"%>
+        <% end %><br>
+    </div>
+<% end %>

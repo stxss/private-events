@@ -6,17 +6,9 @@
   <%= render "event_info" %>
 </div>
 
-                <li style="list-style-type: none;">
-                  <%= b.check_box %>
-                  <%= b.label  %>
-                </li>
-                <% end %><br />
-                <%= f.submit "Cancel Invitations"%>
-            <% end %><br>
-          </div>
-        <% end %>
-    </li>
-</ul>
+<div>
+  <%= render "event_invitations", invitation: Invitation.new ,inviteable: @inviteable, cancellable: @cancellable %>
+</div>
 
 <div>
   <%= render "event_attendance" %>
