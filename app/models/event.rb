@@ -5,8 +5,6 @@ class Event < ApplicationRecord
 
   scope :past, -> { where("start_date < ?", Date.current) }
   scope :upcoming, -> { where("start_date > ?", Date.current) }
-  scope :public_visibility, -> { where("visibility = ?", "public") }
-  scope :private_visibility, -> { where("visibility = ?", "private") }
 
   def visible?(user)
     if user
