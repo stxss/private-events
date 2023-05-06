@@ -28,6 +28,7 @@
             This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>
           </div>
           <div>
+            <p>Invite users:<p>
             <%= form_with model: Invitation.new, url: event_invitations_path(@event) do |f| %>
               <%= f.collection_check_boxes(:invitee_ids, User.order(:username).reject { |n| n == current_user}, :id, :username) do |b| %>
 

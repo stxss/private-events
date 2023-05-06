@@ -3,29 +3,22 @@ class InvitationsController < ApplicationController
 
   def new
     @invitation = Invitation.new
-    @creator = InvitationCreator.new
   end
 
   def create
-    result = InvitationCreator.call(invitation_params)
+    invitations = InvitationCreator.call(invitation_params)
 
-    if result
-      flash[:info] = "Invitations successful!"
-      redirect_to root_path
-    elsif result.failed?
-      flash[:warning] = "Failed to send invitations to the following #{"user".pluralize(invites.failed.count)}, please try again."
-      flash[:notice] = result.failed
+    if invitations
+
+      redirect_to root_path, notice: "Invitations successful!"
     end
   end
 
   def destroy
-    @event_id = invitation_params[:event_id]
-    @invitation = Invitation.where(event_id: @event_id, invitee_id: current_user).first
+    invitations = InvitationWiper.call(invitation_params)
 
-    if @invitation.destroy
-      redirect_to root_path
-    else
-      render :new, status: :unprocessable_entity
+    if invitations
+      redirect_to root_path, alert: "Cancelled the invitations successfully!"
     end
   end
 
