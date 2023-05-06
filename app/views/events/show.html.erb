@@ -30,7 +30,7 @@
           <div>
             <p>Invite users:<p>
             <%= form_with model: Invitation.new, url: event_invitations_path(@event) do |f| %>
-              <%= f.collection_check_boxes(:invitee_ids, User.order(:username).reject { |n| n == current_user}, :id, :username) do |b| %>
+              <%= f.collection_check_boxes(:invitee_ids, User.order(:username).reject { |n| n == current_user || n.invitations_received.where(event_id: @event.id).any?}, :id, :username) do |b| %>
 
                 <li style="list-style-type: none;">
                   <%= b.check_box %>
