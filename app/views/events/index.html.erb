@@ -1,7 +1,6 @@
-
 <div>
-<%= render "shared/header_links" %>
-</div>
+  <%= render "shared/header_links" %>
+</div><br />
 
 Hi! Here's the events we have available
 <% if current_user %>
@@ -11,14 +10,14 @@ Hi! Here's the events we have available
 <% end %>
 
 <div>
-<%= render "past_events" %>
+  <%= render "past_events" %>
 </div>
 
 <div>
-<%= render "upcoming_events" %>
+  <%= render "upcoming_events" %>
 </div>
 
 
 <%= button_to "Create Event", new_event_url, method: :get %><br />
+<%= button_to "Sign in", new_user_session_url, method: :get %><br />
 <%= button_to "Sign out", destroy_user_session_url, method: :delete %>
-<%= link_to "Sign in", new_user_session_url %>
