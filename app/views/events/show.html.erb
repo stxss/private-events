@@ -19,12 +19,7 @@
 </ul>
 
 <div>
-  attendees:
-  <ul>
-      <% @event.attendees.each do |a| %>
-        <li> <%= a.username %> </li>
-      <% end %>
-  </ul>
+  <%= render "event_attendance" %>
 </div>
 
   <% if current_user && @event.creator_id == current_user.id  %>
@@ -33,10 +28,3 @@
     <%= button_to "Cancel event", event_url(@event), method: :delete, data: {turbo_confirm: "Are you sure?"} %><br />
   <% end %>
 
-  <% if @event.start_date >= Date.current %>
-    <% if @event.attendees.include?(current_user) %>
-      <%= button_to "Cancel my attendance", event_attendance_url(attendance: {attended_event_id: @event, attendee_id: current_user} ), method: :delete %><br />
-    <% else %>
-      <%= button_to "Attend Event", event_attendances_url(attendance: {attended_event_id: @event, attendee_id: current_user} ) %><br />
-    <% end %>
-  <% end %>
