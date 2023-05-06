@@ -7,14 +7,8 @@ class EventAttendance < ApplicationRecord
   private
 
   def ok_date?
-    @event = Event.find(attended_event_id)
-    if @event.start_date < Date.current
+    if attended_event.start_date < Date.current
       errors.add(:start_date, "can't be in the past")
     end
   end
-
-  def ok_invited?
-    
-  end
-
 end
