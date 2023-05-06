@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :events do
     resources :invitations
   end
-  resources :users, except: [ :show ]
+  resources :users, except: [:show]
   resources :event_attendances
 
-  get 'profile', to: 'users#show'
+  get "profile", to: "users#show"
 end

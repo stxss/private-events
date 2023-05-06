@@ -4,26 +4,36 @@
 </div>
 
 Hi! Here's the events we have available
+<% if current_user %>
+  <p>You're signed in as <%= current_user.username %>
+<% else %>
+  <p>You're here as a guest </p>
+<% end %>
+
 
 <div>
   <ul>
     Past events:<br /><br />
       <% Event.past.each do |e| %>
-        <li>
-          Title: <%= link_to e.title, e %><br />
-          Details: <%= e.description %><br />
-          Creator: <%= User.find(e.creator_id).username %>
-        </li>
+        <% if e.visible?(current_user) %>
+          <li>
+            Title: <%= link_to e.title, e %><br />
+            Details: <%= e.description %><br />
+            Creator: <%= User.find(e.creator_id).username %>
+          </li>
+        <% end %>
       <% end %>
   </ul>
   <ul>
     Future events:<br /><br />
       <% Event.upcoming.each do |e| %>
+        <% if e.visible?(current_user) %>
         <li>
           Title: <%= link_to e.title, e %><br />
           Details: <%= e.description %><br />
           Creator: <%= User.find(e.creator_id).username %>
         </li>
+        <% end %>
       <% end %>
   </ul>
 </div>

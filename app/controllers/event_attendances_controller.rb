@@ -20,9 +20,9 @@ class EventAttendancesController < ApplicationController
     @attendance = EventAttendance.where(attended_event_id: @event_id, attendee_id: current_user).first
 
     if @attendance.destroy
-        redirect_to root_path
+      redirect_to root_path
     else
-        render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

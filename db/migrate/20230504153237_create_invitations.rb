@@ -4,7 +4,7 @@ class CreateInvitations < ActiveRecord::Migration[7.0]
       t.integer :creator_id, foreign_key: true
       t.integer :invited_event_id, foreign_key: true
       t.integer :invitee_id, foreign_key: true
-      t.string :answer, :default => "pending"
+      t.string :answer, default: "pending"
 
       t.timestamps
     end

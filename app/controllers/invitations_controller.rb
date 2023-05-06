@@ -9,11 +9,12 @@ class InvitationsController < ApplicationController
   def create
     result = InvitationCreator.call(invitation_params)
 
-    if result.successes.present?
+    if result
       flash[:info] = "Invitations successful!"
       redirect_to root_path
-    else
-      flash[:warning] = "Failed to send invitations, please try again."
+    elsif result.failed?
+      flash[:warning] = "Failed to send invitations to the following #{"user".pluralize(invites.failed.count)}, please try again."
+      flash[:notice] = result.failed
     end
   end
 
@@ -31,6 +32,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(invitee_ids: []).merge(creator_id: current_user.id, event_id: params[:event_id])
+    params.require(:invitation).permit(invitee_ids: []).merge(inviter_id: current_user.id, event_id: params[:event_id])
   end
 end
