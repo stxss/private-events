@@ -22,9 +22,8 @@
   <%= render "event_attendance" %>
 </div>
 
-  <% if current_user && @event.creator_id == current_user.id  %>
-    <%= button_to "Edit event", edit_event_url(@event), method: :get %><br />
+<div>
+  <%= render "event_editability" %>
+</div>
 
-    <%= button_to "Cancel event", event_url(@event), method: :delete, data: {turbo_confirm: "Are you sure?"} %><br />
-  <% end %>
 

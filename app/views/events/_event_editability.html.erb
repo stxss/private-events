@@ -1,0 +1,7 @@
+<% if @event.creator_id == current_user.id %>
+    <div>
+        <p>This event is <%= @event.visibility %>. To change its visibility, click <%= link_to "here", edit_event_url(@event) %>.</p>
+        <%= button_to "Edit event", edit_event_url(@event), method: :get %><br />
+        <%= button_to "Cancel event", event_url(@event), method: :delete, data: {turbo_confirm: "Are you sure?"} %><br />
+    </div>
+<% end %>
